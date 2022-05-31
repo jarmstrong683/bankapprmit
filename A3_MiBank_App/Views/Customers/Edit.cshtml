@@ -1,0 +1,117 @@
+﻿@model A3_MiBank_App.ViewModels.EditCustomerViewModel
+
+
+@{
+    //Layout = null;
+
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Edit</title>
+</head>
+<body>
+
+    <h4>Edit Customer Profile</h4>
+
+    <!--<div class="form-background"> -->
+    <!--<div class="row" >-->
+    <form asp-action="Edit">
+        <div class="form-background" style="width: 60%; float: left;">
+
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="CustomerID" />
+
+            <div class="form-group">
+                <label asp-for="CustomerName" class="control-label"></label>
+                <input asp-for="CustomerName" class="form-control" />
+                <span asp-validation-for="CustomerName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TFN" class="control-label"></label>
+                <input asp-for="TFN" class="form-control" />
+                <span asp-validation-for="TFN" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address" class="control-label"></label>
+                <input asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="City" class="control-label"></label>
+                <input asp-for="City" class="form-control" />
+                <span asp-validation-for="City" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="State" class="control-label"></label>
+                <!--<input asp-for="State" class="form-control" />-->
+                <select asp-for="State" class="form-control" asp-items="Html.GetEnumSelectList<States>()">
+                </select>
+                <span asp-validation-for="State" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PostCode" class="control-label"></label>
+                <input asp-for="PostCode" class="form-control" />
+                <span asp-validation-for="PostCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Phone" class="control-label"></label>
+                <input asp-for="Phone" class="form-control" />
+                <span asp-validation-for="Phone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+
+            <!-- </form> -->
+        </div>
+        <!--</div>-->
+        <div class="form-background" style="float: left; width: 30%; margin-left: 40px; border: solid 1px black;">
+
+            <!--  <form asp-action="Edit"> -->
+            <fieldset>
+                <legend>Password Change</legend>
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="CustomerID" />
+                <div class="form-group">
+                    <label asp-for="CurrentPassword" class="control-label"></label>
+                    <input type="password" asp-for="CurrentPassword" class="form-control" />
+                    <span asp-validation-for="CurrentPassword" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="NewPassword" class="control-label"></label>
+                    <input type="password" asp-for="NewPassword" class="form-control" />
+                    <span asp-validation-for="NewPassword" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ConfirmNewPassword" class="control-label"></label>
+                    <input type="password" asp-for="ConfirmNewPassword" class="form-control" />
+                    <span asp-validation-for="ConfirmNewPassword" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </fieldset>
+            <!-- </form>  -->
+
+        </div>
+        <!--</div>-->
+    </form>
+
+    <div style="clear: both">
+        <a asp-action="CustomerAccounts">Back to Accounts</a>
+    </div>
+
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
+</body>
+</html>

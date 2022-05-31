@@ -1,0 +1,62 @@
+﻿@using System.Globalization;
+@model Customer
+@{
+    ViewData["Title"] = "Accounts";
+    CultureInfo culture = new CultureInfo("en-au");
+}
+
+    <h3>@ViewData["Title"]</h3>
+    <h4>Customer: @Model.CustomerName</h4>
+<div class="form-background">
+    
+    <table class="table">
+        <tr>
+            <th>@Html.DisplayNameFor(x => x.Accounts[0].AccountNumber)</th>
+            <th>@Html.DisplayNameFor(x => x.Accounts[0].AccountType)</th>
+            <th>@Html.DisplayNameFor(x => x.Accounts[0].Balance)</th>
+            <th></th>
+        </tr>
+        @foreach (var account in Model.Accounts)
+        {
+    <tr>
+        <td>@Html.DisplayFor(x => account.AccountNumber)</td>
+        <td>@Html.DisplayFor(x => account.AccountType)</td>
+        <td>@account.Balance.ToString("C2",culture)</td>
+
+        <td>
+            <form asp-action="CustomerAccountsToStatement" asp-controller="Accounts">
+                <input type="hidden" name="accountNumber" value="@account.AccountNumber" />
+                <input type="submit" class="btn btn-primary" value="Statement" />
+            </form>
+        </td>
+        <td>
+            <form asp-action="CustomerAccountsToBillPayDisplay" asp-controller="Accounts">
+                <input type="hidden" name="accountNumber" value="@account.AccountNumber" />
+                <input type="submit" class="btn btn-primary" value="Scheduled BillPays" />
+            </form>
+        </td>
+        @*
+        <td>
+            <a class="btn btn-primary"
+               asp-action="Deposit" asp-controller="Transactions" asp-route-accountNumber="@account.AccountNumber">Deposit</a>
+        </td>
+        <td>
+            <a class="btn btn-primary"
+               asp-action="Withdraw" asp-controller="Transactions" asp-route-accountNumber="@account.AccountNumber">Withdraw</a>
+        </td>
+        <td>
+            <a class="btn btn-primary"
+               asp-action="Transfer" asp-controller="Transactions">Transfer</a>
+
+            <a class="btn btn-primary"
+           asp-action="Transfer" asp-controller="Transactions" asp-route-accountNumber="@account.AccountNumber">Transfer</a>
+        </td>
+            <td>
+                <a class="btn btn-primary"
+                   asp-action="BillPay" asp-controller="Transactions" asp-route-accountNumber="@account.AccountNumber">BillPay</a>
+            </td>
+        *@
+    </tr>
+        }
+    </table>
+</div>

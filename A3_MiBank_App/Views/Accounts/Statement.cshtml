@@ -1,0 +1,77 @@
+﻿@using Microsoft.AspNetCore.Http;
+@using X.PagedList.Mvc.Core;
+@using X.PagedList.Web.Common;
+@using System.Globalization;
+
+
+
+@model A3_MiBank_App.ViewModels.StatementViewModel
+
+@{
+    ViewData["Title"] = "Statement";
+    CultureInfo culture = new CultureInfo("en-au");
+
+ }
+
+<!DOCTYPE html>
+<html lang="en-au">
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Statement</title>
+    </head>
+    <body>
+
+        <h3>@ViewData["Title"]</h3>
+        <h4>Customer:  @Context.Session.GetString(nameof(Customer.CustomerName))</h4>
+        <br />
+        <div class="form-background">
+
+            <h5><span style="margin-right: 50px;"><b>Account:</b> @Html.DisplayFor(x => x.Account.AccountNumber)</span><span><b>Balance:</b>@Model.Account.Balance.ToString("C2",culture)</span></h5>
+
+            <table class="table">
+                <tr>
+                    <th>@Html.DisplayNameFor(x => x.Account.Transactions[0].TransactionID)</th>
+                    <th>@Html.DisplayNameFor(x => x.Account.Transactions[0].TransactionType)</th>
+                    <th>@Html.DisplayNameFor(x => x.Account.Transactions[0].AccountNumber)</th>
+                    <th>@Html.DisplayNameFor(x => x.Account.Transactions[0].DestinationAccountNumber)</th>
+                    <th>@Html.DisplayNameFor(x => x.Account.Transactions[0].Amount)</th>
+                    <th>@Html.DisplayNameFor(x => x.Account.Transactions[0].Comment)</th>
+                    <th>@Html.DisplayNameFor(x => x.Account.Transactions[0].ModifyDate)</th>
+
+                </tr>
+
+                @foreach (var transaction in Model.PagedTransactionsList)
+                {
+            <tr>
+
+                <td>@Html.DisplayFor(x => transaction.TransactionID)</td>
+                <td>@Html.DisplayFor(x => transaction.TransactionType)</td>
+                <td>@Html.DisplayFor(x => transaction.AccountNumber)</td>
+                <td>@Html.DisplayFor(x => transaction.DestinationAccountNumber)</td>
+                <td>@transaction.Amount.ToString("C2", culture)</td>
+                <td>@Html.DisplayFor(x => transaction.Comment)</td>
+                <!--<td>@transaction.ModifyDate.ToLocalTime()</td>-->
+                <td>@Html.FormatValue(transaction.ModifyDate, "{0:dd/MM/yyyy HH:mm:ss}")</td>
+
+
+            </tr>
+                }
+            </table>
+
+            <div style="float: right">
+                <a asp-controller="Customers" asp-action="CustomerAccounts">Back to Accounts</a>
+            </div>
+
+            @Html.PagedListPager(Model.PagedTransactionsList, page => Url.Action("Statement", new { page }),
+                        new PagedListRenderOptionsBase
+                        {
+                            LiElementClasses = new[] { "page-item" },
+                            PageClasses = new[] { "page-link" }
+                        }
+
+                    )
+
+            
+        </div>
+    </body>
+    </html>

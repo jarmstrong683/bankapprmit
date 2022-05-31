@@ -1,0 +1,91 @@
+﻿@using Microsoft.AspNetCore.Http;
+@using X.PagedList.Mvc.Core;
+@using X.PagedList.Web.Common;
+@model A3_MiBank_App.ViewModels.BillPayViewModel
+@{
+    ViewData["Title"] = "BillPay";
+}
+
+<div style="float: left;">
+    <h3>@ViewData["Title"]</h3>
+    <h4><b>Customer:</b> @Context.Session.GetString(nameof(Customer.CustomerName))</h4>
+</div>
+<div style="float: right;">
+     <form  asp-action="CustomerAccounts" asp-controller="Customers">
+           <input type="hidden" name="accountNumber" value="@Model.AccountNumber" />
+           <input type="submit" class="btn btn-primary" value="Scheduled BillPays" />
+       </form>
+</div>
+
+
+<br style="clear: both;" />
+<div class="form-background">
+    <div class="row">
+        <div class="col-md-11">
+            <form asp-action="BillPay">
+                <input type="hidden" asp-for="AccountType" />
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    @* ReSharper disable once UnknownCssClass *@
+
+                    <div style="width: 50%; float: left">
+                        <label asp-for="AccountNumber" class="control-label">Account</label>
+                        <select name="AccountNumber" class="form-control" asp-items=Model.AccountNumbersList></select>
+                        <span asp-validation-for="AccountNumber" class="text-danger"></span>
+                    </div>
+                    <div style="width: 50%; float: left">
+                        <label asp-for="PayeeName" class="control-label">Payee Name</label>
+                        <select name="PayeeName" class="form-control" asp-items="Model.PayeeNameOptions"></select>
+                        <span asp-validation-for="PayeeName" class="text-danger"></span>
+                    </div>
+                    <br />
+                    <div style="clear: both;">
+                        <label asp-for="Amount" class="control-label">Amount</label>
+                        <input asp-for="Amount" class="form-control" />
+                        <span asp-validation-for="Amount" class="text-danger"></span>
+                    </div>
+                    <br />
+                    <div>
+                        <label asp-for="ScheduleDate" class="control-label">Schedule Date</label>
+                        <input asp-for="ScheduleDate" class="form-control" />
+                        <span asp-validation-for="ScheduleDate" class="text-danger"></span>
+                    </div>
+                    <br />
+                    <div>
+                        <label asp-for="Period" class="control-label">Payment Period</label>
+                        <br />
+                        <select asp-for="Period" class="form-control" asp-items="Html.GetEnumSelectList<PaymentPeriod>()">
+                            <option value="">Choose a time period</option>
+                        </select>
+                        <span asp-validation-for="Period" class="text-danger"></span>
+                    </div>
+                    <br />
+
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<div>
+    <a asp-controller="Customers" asp-action="CustomerAccounts">Back to Accounts</a>
+</div>
+
+@*
+
+@Html.PagedListPager(Model.PagedBillPayList, page => Url.Action("BillPayDisplay", new { page }),
+                        new PagedListRenderOptionsBase
+                        {
+                            LiElementClasses = new[] { "page-item" },
+                            PageClasses = new[] { "page-link" }
+                        }
+
+                    )  *@
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

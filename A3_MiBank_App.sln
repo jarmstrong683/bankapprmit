@@ -1,0 +1,24 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30309.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "A3_MiBank_App", "A3_MiBank_App\A3_MiBank_App.csproj", "{C249AC7D-8F78-4A13-AF9A-160EAC5E58A3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C249AC7D-8F78-4A13-AF9A-160EAC5E58A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C249AC7D-8F78-4A13-AF9A-160EAC5E58A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C249AC7D-8F78-4A13-AF9A-160EAC5E58A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C249AC7D-8F78-4A13-AF9A-160EAC5E58A3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D1B1287D-DDCF-47BA-95DC-0D67B90B156E}
+	EndGlobalSection
+EndGlobal

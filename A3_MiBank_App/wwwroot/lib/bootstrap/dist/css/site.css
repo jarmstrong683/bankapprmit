@@ -1,0 +1,178 @@
+﻿
+
+
+/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+
+@font-face {
+    font-family: OpenSansBold;
+    src: url('~/fonts/OpenSans-Bold.ttf');
+}
+
+@font-face {
+    font-family: OpenSansRegular;
+    src: url('fonts/OpenSans-Regular.ttf');
+}
+
+html {
+    font-family: OpenSansRegular, sans-serif;
+    line-height: 1.15;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent
+}
+
+body {
+    margin: 0;
+    font-family: OpenSansRegular, sans-serif;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #22336D;
+    /*color: #212529;*/
+    text-align: left;
+    background-color: #fff
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6
+{
+    color: #22336D;
+}
+
+
+
+
+a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+
+
+/* Provide sufficient contrast against white background */
+a {
+    color: red !important;
+    /*color: #0366d6; 
+    color: #22336D;
+    color: #ea3425;
+    color: #d03425;*/
+}
+
+a.nav-link {
+    color: #dc3545 !important;
+}
+
+a {
+    color: purple !important;
+}
+
+.nav-link .text-dark  {
+    color: purple!important;
+}
+
+a.text-dark:focus,
+a.text-dark:hover {
+    color: purple !important;
+    text-decoration: none !important;
+}
+
+.btn {
+    font-weight: bold;
+    color: purple;
+    background-color: white;
+    border-color: #1861ac;
+}
+.btn-primary {
+    font-weight: bold;
+    color: purple;
+    background-color: white;
+    border-color: #1861ac;
+}
+a.btn.btn-primary:hover,
+a.btn.btn-primary:focus{
+    font-weight: bold;
+    color: white !important;
+    background-color: blue;
+    border-color: #1861ac;
+}
+
+.btn-login {
+    font-weight: bold !important;
+    color: white;
+    background-color: #dc3545;
+    margin-left: 45% !important;
+    margin-right: auto !important;
+    border: none;
+}
+
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    font-weight: bold;
+    color: purple;
+    /*background-color: #1b6ec2;*/
+    background-color: white;
+    border-color: #1861ac;
+}
+
+
+/* Form Spacing */
+
+div.form-background {
+    padding: 10px !important;
+    background-color: #eff7ff !important;
+}
+
+th {
+    font-weight: bold !important;
+}
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  font-size: 14px;
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.border-top {
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  white-space: nowrap;
+  line-height: 60px; /* Vertically center the text there */
+}

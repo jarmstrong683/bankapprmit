@@ -1,0 +1,48 @@
+﻿@model A3_MiBank_App.ViewModels.LoginViewModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+<!DOCTYPE html> 
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ViewData["Title"]</title>
+</head>
+<body>
+
+    <h3>Login</h3>
+    <div class="form-background" style="background-color: #eff7ff"   >
+        <div class="row">
+            <div class="col-md-4">
+                <form asp-action="Login" method="post">
+                    <input type="hidden" name="FailedAttempts" value=@Model.FailedAttempts />
+                    <div class="form-group">
+                        <label asp-for="UserID" class="control-label"></label>
+                        <input asp-for="UserID" class="form-control" />
+                        <span asp-validation-for="UserID" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="Password" class="control-label">Password</label>
+                        <input id="Password" name="Password" type="password" class="form-control"
+                               data-val="true" data-val-required="The Password field is required." />
+                        @Html.ValidationMessage("Password", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Login" class="btn btn-primary" />
+                    </div>
+                    @Html.ValidationMessage("LoginFailed", new { @class = "text-danger" })
+                </form>
+            </div>
+        </div>
+
+
+    </div>
+    @section Scripts {
+        @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+    }
+
+
+</body>
+</html>

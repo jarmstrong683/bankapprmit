@@ -1,0 +1,86 @@
+﻿@using Microsoft.AspNetCore.Http;
+@using X.PagedList.Mvc.Core;
+@using X.PagedList.Web.Common;
+@using System.Globalization;
+
+
+@model A3_MiBank_App.ViewModels.BillPayDisplayViewModel
+
+@{
+    ViewData["Title"] = "Future Scheduled Bill Pays";
+    CultureInfo culture = new CultureInfo("en-au");
+   
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewData["Title"]</title>
+</head>
+    <body>
+
+    <h3>@ViewData["Title"]</h3>
+    <h4>Customer:  @Context.Session.GetString(nameof(Customer.CustomerName))</h4>
+    <br />
+
+    <div class="form-background">
+
+        <h4>Account: @Html.DisplayFor(x => x.Account.AccountNumber)</h4>
+        <h4>Balance: @Model.Account.Balance.ToString("C2",culture)</h4>
+        <table class="table">
+            <tr>
+                <th>@Html.DisplayNameFor(x => x.Account.BillPays[0].BillPayID)</th>
+                <th>@Html.DisplayNameFor(x => x.Account.BillPays[0].AccountNumber)</th>
+                <th>@Html.DisplayNameFor(x => x.Account.BillPays[0].PayeeID)</th>
+                <th>@Html.DisplayNameFor(x => x.Account.BillPays[0].Amount)</th>
+                <th>@Html.DisplayNameFor(x => x.Account.BillPays[0].ScheduleDate)</th>
+                <th>@Html.DisplayNameFor(x => x.Account.BillPays[0].PaymentPeriod)</th>
+                <th>@Html.DisplayNameFor(x => x.Account.BillPays[0].ModifyDate)</th>
+                <th>@Html.DisplayNameFor(x => x.Account.BillPays[0].Paid)</th>
+
+            </tr>
+
+            @foreach (var billpay in Model.PagedBillPayList)
+            {
+        <tr>
+
+            <td>@Html.DisplayFor(x => billpay.BillPayID)</td>
+            <td>@Html.DisplayFor(x => billpay.AccountNumber)</td>
+            <td>@Html.DisplayFor(x => billpay.Payee.PayeeName)</td>
+            <td>@billpay.Amount.ToString("C2", culture)</td>
+            <td>@Html.FormatValue(billpay.ScheduleDate, "{0:dd/MM/yyyy HH:mm:ss}")</td>
+            <!--<td>@billpay.ScheduleDate.ToLocalTime()</td>-->
+            <td>@Html.DisplayFor(x => billpay.PaymentPeriod)</td>
+            <td>@Html.FormatValue(billpay.ModifyDate, "{0:dd/MM/yyyy HH:mm:ss}")</td>
+            <!--<td>@billpay.ScheduleDate.ToLocalTime()</td>-->
+            <td>@Html.DisplayFor(x => billpay.Paid)</td>
+
+            <td>
+                <form asp-action="ModifyBillPay" asp-controller="BillPay" method="get">
+                    <input type="hidden" name="BillPayID" value="@billpay.BillPayID" />
+                    <input type="submit" class="btn btn-primary" value="Modify" />
+                </form>
+            </td>
+
+        </tr>
+            }
+        </table>
+
+        <div style="float: right">
+            <a asp-controller="Customers" asp-action="CustomerAccounts">Back to Accounts</a>
+        </div>
+
+        @Html.PagedListPager(Model.PagedBillPayList, page => Url.Action("BillPayDisplay", new { page }),
+                        new PagedListRenderOptionsBase
+                        {
+                            LiElementClasses = new[] { "page-item" },
+                            PageClasses = new[] { "page-link" }
+                        }
+
+                    )
+    </div>
+
+</body>
+</html>
